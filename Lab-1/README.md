@@ -1,7 +1,3 @@
----
-author: Jacob Rinderud
-keywords: Machine Learning, LTH
----
 # Competition - Music classification
 
 Day 1: Cross-val score 0.81, Test score 0.74.
