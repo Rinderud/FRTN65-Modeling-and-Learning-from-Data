@@ -30,10 +30,8 @@ Combining these equations into $\Omega_1 = \sqrt{\frac{mg}{2k(c^2+1)}}$ and usin
 
 After some trial and error the values of $c=0.7$ and the number of segments $=12$ were found. Producing the following two graphs where we can read that the $z$ position barely changes.
 
-<!-- TODO: insert fig 1 and fig 2>
 ![fig1](img/fig1.png)
 ![fig2](img/fig2.png)
--->
 
 With these results, the $b$ and $I_3$ can be estimated.
 Due to the proportional relation between them, $\frac{b}{I_3} = K_p$, only one of them can be estimated at a time,
@@ -62,15 +60,39 @@ $2\Omega_H = \Omega_2^2(1+c^2)$ must hold in order to keep the quadcopter hoveri
 
 This can be made into $\Omega_2=\sqrt{\frac{2\Omega_H^2}{1+c^2}}$,
 which is a function of $c$.
-Finding a value of $c$ and the number of segments by satisfying that the $\phi$ angle stays small. Using $c = 0.6$ and the number of segments $= 30$ produces the two figures below.
+Finding a value of $c$ and the number of segments by satisfying that the $\phi$ angle stays small. Using $c = 0.6$ and the number of segments $= 30$ produces the two graphs below.
 
-<!-- TODO: insert fig 3 fig 4>
 ![fig3](img/fig3.png)
 ![fig4](img/fig4.png)
-<-->
 
 Using the equations introduces in this task, $I_{est}=\frac{kl}{K_p}$
 results in $I_{est}=1.6667e-05$ with the true $I = 1.6600e-05$.
 
 This difference is $\approx 6.7e-08$ which is ~$0.4 \%$ of the true value.
 The estimation is very close to the real value and can be considered a good estimation.
+
+## Task 4, closing the loop
+
+The fourth task was to evaluate and confirm that the quadcopter moved $0.1$m in the $y$ direction and maintaining the $z$ level. Confirming this, the graph below show the position and angles.
+
+![fig5](img/fig5.png)
+
+## Task 5, estimating a disturbance model
+
+We now consider when the wind is acting on the quadcopter, resulting in a force in the $y$ direction. With the goal of keeping the quadcopter in the center/origin. To do this we estimate with an ARMA model, using the acceleration as measurement and deciding the decimating factor $R$.
+
+Inspecting the illustration of the disturbance in Figure 3 in the Lab manual, the structure for the ARMA was set to $na=2$ and $nc=1$.
+Then, by trial and error, the decimating factor $R$ was set to reproduce an estimation of the true denominator.
+
+![fig6](img/fig6.png)
+![fig7](img/fig7.png)
+
+Which results in $R_{est} = 9.45$ and estimated denominator $s^s+0.06036s+0.96$ with the true denominator $s^2+0.060s+1$. This produces the two graphs above, showing that it was a good estimation. Also note in the second graph that the position is quite affected by the wind.
+
+## Task 6, using the disturbance model in a control design
+
+Implementing an LQG controller was the last task of this lab. This was done by inserting previously calculated values for $\omega_0$ and $\epsilon$, which results in $\omega_0 = \sqrt{0.96} = 0.9798$ and $\frac{0.06036}{\omega_0} = 0.0308$.
+
+![fig8](img/fig8.png)
+
+Using this produces the graph above, in which we can see that using the disturbance in the control design drastically improves the controller. The wind no longer affects the quadcopter large drifts.

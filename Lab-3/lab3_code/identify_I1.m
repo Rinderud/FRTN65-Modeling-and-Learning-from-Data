@@ -4,14 +4,14 @@ run('init_noise_levels')
 addpath ('models')
 %%
 
-Omega_H = 1; %TODO
-c = 1; %TODO
-Omega2 = 1; %TODO
+Omega_H = sqrt(m*g/(4*k)); %TODO
+c = 0.6; %TODO
+Omega2 = sqrt(2*Omega_H^2/(1+c^2)); %TODO
 Omega4 = c*Omega2;
 Omega_in.time = (0:inner_h:2)';
 nbr_samples = length(Omega_in.time);
 Omega_in.signals.values = zeros(nbr_samples,4);
-segments = 1; %TODO
+segments = 30; %TODO
 segment_size = floor(nbr_samples/segments)
 switch_time = [floor(segment_size/2):segment_size:nbr_samples, nbr_samples]
 
@@ -53,5 +53,5 @@ Phidot = out.deta.data(:,1);
 figure(2)
 clf
 compare(dat,sys)
-I1_est = 1 %TODO
+I1_est = k*l/K_p %TODO
 true_I = I(1)
