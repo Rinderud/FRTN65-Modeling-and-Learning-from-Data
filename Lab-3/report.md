@@ -95,4 +95,4 @@ Implementing an LQG controller was the last task of this lab. This was done by i
 
 ![fig8](img/fig8.png)
 
-Using this produces the graph above, in which we can see that using the disturbance in the control design drastically improves the controller. The wind no longer affects the quadcopter large drifts.
+Using this produces the graph above, in which we can see that using the disturbance in the control design drastically improves the controller.
