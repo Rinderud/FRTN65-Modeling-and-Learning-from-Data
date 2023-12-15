@@ -42,10 +42,5 @@ subplot(3,1,3)
 compare(dat3,sys3)
 exportgraphics(figure(2), "Lab-3/img/T1_fig2.pdf", "ContentType","vector")
 
-%u = 4 omega^2
-%K_p = (zdotdot + g) / u
-%k_est = K_p * m
-k_ests = (out.acc.data(:,3)+g) .* m ./ (4 * out.Omega.data(:,1).^2);
-% => an array of a k for each datapoint in zdotdot
-k_est = mean(k_ests)
+k_est = sys2.Kp * m
 k
