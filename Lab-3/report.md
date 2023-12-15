@@ -42,3 +42,35 @@ meaning one of them have to be estimated in another way. It is therefore assumed
 Which results in $b_{est} = 1.9969e-09$ and the true $b = 2.0000e-09$.
 
 This difference is $\approx 3.1e-12$ which is ~$0.2~\%$ of the true value. The estimation is very close to the real value and can be considered a good estimation.
+
+## Task 3, estimating $I_1$ and $I_2$
+
+Due to the summetry of the quadcopter, it holds that $I_1=I_2$,
+so we proceed estimating only one of them.
+The equations of motion for the $\phi$ angle is given by
+$\tau_{\phi} = I_1\ddot{\phi}$, where for small angles, the torque is given by
+$\tau_{\phi} = kl(-\Omega_2^2 + \Omega_4^2)$.
+If $\Omega_1~=~\Omega_3$ and $-\Omega_1^2~+~\Omega_2^2~-~\Omega_3^2~+~\Omega_4^2~=~0$ there will only be a torque on $\phi$.
+
+Let $u=(-\Omega_2^2+\Omega_4^2)$, then $\dot{\phi}$ will satisfy $\dot{\phi} = \frac{kl}{I_2}\frac{1}{s}u$.
+
+To estimate $I_1$ we find $\Omega_H$ where $\Omega_H = \Omega_i$ so that the quadcopter hovers. By rewriting $mg=k(2\Omega_1^2+2\Omega_2^2)$ using $\Omega_H$ we get
+$\Omega_H = \sqrt{\frac{2\Omega_H^2}{4k}}$
+With this, the quadcopter is hovering.
+Adding a new constraint, $\Omega_4 = \Omega_2$, which implies that
+$2\Omega_H = \Omega_2^2(1+c^2)$ must hold in order to keep the quadcopter hovering.
+
+This can be made into $\Omega_2=\sqrt{\frac{2\Omega_H^2}{1+c^2}}$,
+which is a function of $c$.
+Finding a value of $c$ and the number of segments by satisfying that the $\phi$ angle stays small. Using $c = 0.6$ and the number of segments $= 30$ produces the two figures below.
+
+<!-- TODO: insert fig 3 fig 4>
+![fig3](img/fig3.png)
+![fig4](img/fig4.png)
+<-->
+
+Using the equations introduces in this task, $I_{est}=\frac{kl}{K_p}$
+results in $I_{est}=1.6667e-05$ with the true $I = 1.6600e-05$.
+
+This difference is $\approx 6.7e-08$ which is ~$0.4 \%$ of the true value.
+The estimation is very close to the real value and can be considered a good estimation.

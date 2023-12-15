@@ -52,5 +52,5 @@ sys = procest(dat,'p0I')
 figure(2)
 clf
 compare(dat,sys)
-b_est =  Kp * I3 %TODO
+b_est =  Kp * I3 %TODO is this correct syntax?
 true_b = b
